@@ -8,6 +8,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //retira a tarja indicando que está em debug
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Text('Aplicação Responsiva'),
@@ -26,6 +28,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // Variaveis usadas na montagem da tela
   final List<String> rotuloBotao = [
     "7",
     "8",
@@ -60,9 +63,15 @@ class _MyHomePageState extends State<MyHomePage> {
     'assets/images/normal.png',
     'assets/images/gordo.png'
   ];
+  // indice que diz a imagem que será exibida
   int _estadoIndex = 1;
+
+  //Lista com os valores que serão exibidos em Peso,Altura e IMC
   List<double> valor = [0.1, 0.2, 0.3];
 
+// Função chamada quando qualquer botão for botaoAcionado
+// O indice do botão acionado é retornado.
+// Essa função altera os valores que são atualizados na montagem de tela
   void botaoAcionado(int index) {
     setState(() {
       valor[0] = valorBotao[index];
@@ -71,23 +80,29 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+//ontagem da tela
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
+      // obtem o layout da area disponível
       builder: (context, constraints) {
         return SingleChildScrollView(
+          // cria uma tela rolavel
           child: Column(
             children: [
               Image.asset(
                 estado[_estadoIndex],
-                width: constraints.maxWidth * 0.2,
+                width: constraints.maxWidth *
+                    0.2, // obtem informações do LayoutBuilder
                 height: constraints.maxHeight * 0.3,
                 //fit: BoxFit.cover,
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(
+                    8.0), //define que os filhos terão bordas
                 child: Column(
                   children: List.generate(3, (index) {
+                    //gera uma lista de widgets
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Row(
@@ -113,8 +128,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4,
-                    crossAxisSpacing: 8.0,
-                    mainAxisSpacing: 8.0,
+                    crossAxisSpacing: 5.0,
+                    mainAxisSpacing: 5.0,
                   ),
                   itemCount: 12,
                   itemBuilder: (context, index) {
