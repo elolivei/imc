@@ -35,7 +35,7 @@ class MyHomePageState extends State<MyHomePage> {
     "7",
     "8",
     "9",
-    ">",
+    "E>",
     "4",
     "5",
     "6",
